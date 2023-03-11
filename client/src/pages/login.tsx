@@ -6,7 +6,7 @@ import { yariga } from "../assets";
 
 import { CredentialResponse } from "../interfaces/google";
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
 
   const GoogleButton = (): JSX.Element => {
@@ -71,3 +71,5 @@ export const Login: React.FC = () => {
     </Box>
   );
 };
+
+export default Login;
