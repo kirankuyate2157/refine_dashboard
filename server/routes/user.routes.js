@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/").get(getAllUsers);
-router.get("/").create(createUser);
+router.get("/").post(createUser);
 router.get("/:id").get(getUserInfoByID);
 
 export default router;

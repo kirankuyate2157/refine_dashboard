@@ -1,9 +1,9 @@
+import React from "react";
+
 import { useEffect, useRef } from "react";
 import { useLogin } from "@pankod/refine-core";
 import { Container, Box } from "@pankod/refine-mui";
-
 import { yariga } from "../assets";
-
 import { CredentialResponse } from "../interfaces/google";
 
 const Login: React.FC = () => {
@@ -14,15 +14,19 @@ const Login: React.FC = () => {
 
     useEffect(() => {
       if (typeof window === "undefined" || !window.google || !divRef.current) {
+        console.log("it`s not working !!");
+
         return;
       }
 
       try {
         window.google.accounts.id.initialize({
           ux_mode: "popup",
-          client_id: process.env.GOOGLE_CLIENT_ID,
+          client_id:
+            "24752329764-utkr72ee1f59ieci281k3eo41thgdgsg.apps.googleusercontent.com",
           callback: async (res: CredentialResponse) => {
             if (res.credential) {
+              console.log(" result : ");
               login(res);
             }
           },
@@ -39,6 +43,8 @@ const Login: React.FC = () => {
 
     return <div ref={divRef} />;
   };
+  // check if google object is available
+  // console.log(divRef.current); // check if the div element is available
 
   return (
     <Box component="div" sx={{ backgroundColor: "#FCFCFC" }}>
@@ -71,5 +77,4 @@ const Login: React.FC = () => {
     </Box>
   );
 };
-
 export default Login;
