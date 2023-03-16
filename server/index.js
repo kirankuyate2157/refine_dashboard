@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 //using middleware  "api/v1/users"
 
-app.use("api/v1/users", userRouter);
+app.use("/api/v1/users", userRouter);
 app.use("/api/v1/properties", propertyRouter);
 
 //server port and connection

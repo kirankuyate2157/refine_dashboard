@@ -71,12 +71,13 @@ function App() {
         const data = await response.json();
 
         if (response.status === 200) {
+          console.log(data);
           localStorage.setItem(
             "user",
             JSON.stringify({
               ...profileObj,
               avatar: profileObj.picture,
-              userid: data._id,
+              user_id: data._id,
             })
           );
         } else {
@@ -139,7 +140,7 @@ function App() {
         <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
         <RefineSnackbarProvider>
           <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+            dataProvider={dataProvider("http://localhost:8080/api/v1")}
             notificationProvider={notificationProvider}
             ReadyPage={ReadyPage}
             catchAll={<ErrorComponent />}
