@@ -103,8 +103,16 @@ const AllProperties = () => {
                 required
                 inputProps={{ "aria-label": "label" }}
                 defaultValue=""
-                value=""
-                onChange={() => {}}
+                value={currentFilterValues.propertyType}
+                onChange={(e) => {
+                  setFilters([
+                    {
+                      field: "propertyType",
+                      operator: "eq",
+                      value: e.target.value,
+                    },
+                  ]);
+                }}
               >
                 <MenuItem value="">All</MenuItem>
                 {[
