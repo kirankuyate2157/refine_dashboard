@@ -170,14 +170,17 @@ const AllProperties = () => {
             alignItems="center"
             gap="5px"
           >
-            Pages<strong>{current}</strong> of {pageCount}
+            Page{" "}
+            <strong>
+              {current} of {pageCount}
+            </strong>
           </Box>
           <CustomButton
             title="Next"
-            handleClick={() => setCurrent((prev) => prev - 1)}
+            handleClick={() => setCurrent((prev) => prev + 1)}
             backgroundColor="#475be8"
             color="#fcfcfc"
-            disabled={!(current > 1)}
+            disabled={current === pageCount}
           />
           <Select
             variant="outlined"
