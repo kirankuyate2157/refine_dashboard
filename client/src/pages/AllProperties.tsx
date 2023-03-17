@@ -13,6 +13,7 @@ const AllProperties = () => {
   } = useTable();
 
   const allProperties = data?.data ?? [];
+  console.log(data);
 
   if (isLoading) return <Typography>Loading...</Typography>;
   if (isError) return <Typography>Error...</Typography>;
