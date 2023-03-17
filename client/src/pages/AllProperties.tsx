@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import { Add } from "@mui/icons-material";
 import { useTable } from "@pankod/refine-core";
 import {
@@ -30,6 +30,23 @@ const AllProperties = () => {
 
   const allProperties = data?.data ?? [];
   console.log(data);
+  const currentPrice = sorter.find((item) => item.field === "price")?.order;
+  const toggleSort = (field: string) => {
+    setSorter([{ field, order: currentPrice === "asc" ? "desc" : "asc" }]);
+  };
+
+  const currentFilterValues = useMemo(() => {
+    const logicalFilters = filters.flatMap((item) =>
+      "field" in item ? item : []
+    );
+
+    return {
+      title: logicalFilters.find((item) => item.field === "title")?.value || "",
+      propertyType:
+        logicalFilters.find((item) => item.field === "propertyType")?.value ||
+        "",
+    };
+  }, [filters]);
 
   if (isLoading) return <Typography>Loading...</Typography>;
   if (isError) return <Typography>Error...</Typography>;
@@ -57,7 +74,8 @@ const AllProperties = () => {
               mb={{ xs: "20px", sm: 0 }}
             >
               <CustomButton
-                title={"Sort price"}
+                title={`Sort price ${currentPrice === "asc" ? "↑" : "↓"}`}
+                handleClick={() => toggleSort("price")}
                 backgroundColor="#475be8"
                 color="#fcfcfc"
               />
@@ -65,8 +83,18 @@ const AllProperties = () => {
                 variant="outlined"
                 color="info"
                 placeholder="Search by title"
-                value=""
-                onChange={() => {}}
+                value={currentFilterValues.title}
+                onChange={(e) => {
+                  setFilters([
+                    {
+                      field: "title",
+                      operator: "contains",
+                      value: e.currentTarget.value
+                        ? e.currentTarget.value
+                        : undefined,
+                    },
+                  ]);
+                }}
               />
               <Select
                 variant="outlined"
@@ -137,7 +165,7 @@ const AllProperties = () => {
             Pages<strong>{current}</strong> of {pageCount}
           </Box>
           <CustomButton
-            title="Previous"
+            title="Next"
             handleClick={() => setCurrent((prev) => prev - 1)}
             backgroundColor="#475be8"
             color="#fcfcfc"
