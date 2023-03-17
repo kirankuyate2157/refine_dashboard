@@ -37,6 +37,7 @@ import {
   EditProperty,
 } from "pages";
 import { create } from "domain";
+import "./index.css";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
