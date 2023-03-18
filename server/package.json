@@ -5,7 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index"
+    "start": "nodemon index",
+    "build": "npm install && npm run build-server",
+    "build-server": "echo 'Building server...' && npm run compile-server",
+    "compile-server": "echo 'Compiling server...'"
   },
   "keywords": [],
   "author": "",
