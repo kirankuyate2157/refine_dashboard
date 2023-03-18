@@ -14,7 +14,7 @@ const Login: React.FC = () => {
 
     useEffect(() => {
       if (typeof window === "undefined" || !window.google || !divRef.current) {
-        console.log("it`s not working !!");
+        // console.log("it`s not working !!");
 
         return;
       }
@@ -26,7 +26,7 @@ const Login: React.FC = () => {
             "24752329764-utkr72ee1f59ieci281k3eo41thgdgsg.apps.googleusercontent.com",
           callback: async (res: CredentialResponse) => {
             if (res.credential) {
-              console.log(" result : ");
+              // console.log(" result : ");
               login(res);
             }
           },

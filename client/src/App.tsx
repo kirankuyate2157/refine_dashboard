@@ -72,7 +72,7 @@ function App() {
         const data = await response.json();
 
         if (response.status === 200) {
-          console.log(data);
+          // console.log(data);
           localStorage.setItem(
             "user",
             JSON.stringify({
