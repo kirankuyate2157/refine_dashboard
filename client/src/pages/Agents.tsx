@@ -8,7 +8,7 @@ const Agents = () => {
   const { data, isLoading, isError } = useList({ resource: "users" });
 
   const allAgents = data?.data ?? [];
-  console.log("all agents : ", allAgents);
+  // console.log("all agents : ", allAgents);
 
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>error...</div>;

@@ -6,17 +6,17 @@ import { Profile } from "components";
 
 const MyProfile = () => {
   const { data: user } = useGetIdentity();
-  console.log("user :", user);
+  // console.log("user :", user);
 
   const { data, isLoading, isError } = useOne({
     resource: "users",
     id: user?.user_id,
   });
-  console.log("data : ", data);
+  // console.log("data : ", data);
 
   const myProfile = data?.data ?? [];
 
-  console.log("myProfile  : ", myProfile);
+  // console.log("myProfile  : ", myProfile);
 
   if (isLoading) return <div>loading...</div>;
   if (isError) return <div>error...</div>;
