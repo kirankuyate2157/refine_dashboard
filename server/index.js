@@ -14,14 +14,13 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" })); //setting limit
 
 app.get("/", (req, res) => {
-  res.send({ message: "Hello World" }); //route response on root
+  res.send({ message: "Hello World my name is kiran.dev" }); //route response on root
 });
-
 //using middleware  "api/v1/users"
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/properties", propertyRouter);
-app.use("/api/v1/mail", mails);
+app.use("/api/v1/senttomail", mails);
 
 //server port and connection
 const StartServer = async () => {
