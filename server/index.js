@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" })); //setting limit
 
 app.get("/", (req, res) => {
-  res.send({ message: "Hello World my name is kiran.dev" }); //route response on root
+  res.send({ message: "Hello World ! my name is kiran.dev" }); //route response on root
 });
 //using middleware  "api/v1/users"
 
