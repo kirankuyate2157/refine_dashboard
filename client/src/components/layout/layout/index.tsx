@@ -16,7 +16,7 @@ export const Layout: React.FC<LayoutProps> = ({
   const HeaderToRender = Header ?? DefaultHeader;
 
   return (
-    <Box display="flex" flexDirection="row">
+    <Box display='flex' flexDirection='row'>
       <SiderToRender />
       <Box
         sx={{
@@ -28,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = ({
       >
         <HeaderToRender />
         <Box
-          component="main"
+          component='main'
           sx={{
             p: { xs: 1, md: 2, lg: 3 },
             flexGrow: 1,

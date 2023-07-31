@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 
 import { Refine, GitHubBanner, AuthProvider } from "@pankod/refine-core";
 import {
