@@ -21,6 +21,7 @@ const createUser = async (req, res) => {
     const newUser = await User.create({
       name,
       email,
+      password,
       avatar,
     });
 
@@ -34,7 +35,7 @@ const getUserInfoByID = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await User.findOne({ _id: id }).populate("allProperties");
+    const user = await User.findOne({ _id: id }).populate("allCoupons");
 
     if (user) {
       res.status(200).json(user);
