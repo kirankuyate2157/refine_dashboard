@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import * as dotenv from "dotenv";
+import { Resend } from "resend";
 
 dotenv.config();
 
@@ -29,6 +30,28 @@ const transporter_HV = nodemailer.createTransport(
   { from: "Consultation" }
 );
 
+// --------------------
+// 3️⃣ Resend Transporter
+// --------------------
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+// ⭐ Resend Email Function
+const sendEmailResend = async (to, subject, html) => {
+  try {
+    const data = await resend.emails.send({
+      from: "Kways <onboarding@resend.dev>",
+      to,
+      subject,
+      html,
+    });
+
+    console.log("Resend email sent:", data);
+    return true;
+  } catch (error) {
+    console.log("Resend Error:", error);
+    return false;
+  }
+};
 const sendEmail = async (to, subject, text, html) => {
   const mailOptions = {
     from: `"kiran.Dev 🍏 " <kiranrkuyate2021@gmail.com>`,
@@ -89,5 +112,12 @@ const emails = async (req, res) => {
     res.status(500).send({ message: "Error sending email" });
   }
 };
+const emails_resend = async (req, res) => {
+  const { to, subject, html } = req.body;
 
-export { emails ,emails_HV};
+  const result = await sendEmailResend(to, subject, html);
+
+  if (result) res.status(200).send({ message: "Resend email sent successfully" });
+  else res.status(500).send({ message: "Error sending via Resend" });
+};
+export { emails ,emails_HV,emails_resend};
